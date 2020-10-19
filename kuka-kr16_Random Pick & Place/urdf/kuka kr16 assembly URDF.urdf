@@ -1,0 +1,376 @@
+<robot
+  name="kuka kr16 assembly URDF">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.544335726564569 -0.11036540052519 0.358077235062418"
+        rpy="0 0 0" />
+      <mass
+        value="70.9384782037454" />
+      <inertia
+        ixx="2.17816157599672"
+        ixy="-0.0355455223260792"
+        ixz="-8.63444775765357E-05"
+        iyy="1.74808344841311"
+        iyz="0.0611579961728566"
+        izz="2.23376305112291" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.917647058823529 0.43921568627451 0.0666666666666667 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="rotary head">
+    <inertial>
+      <origin
+        xyz="0.14203 0.033929 0.2326"
+        rpy="0 0 0" />
+      <mass
+        value="29.917" />
+      <inertia
+        ixx="0.72489"
+        ixy="-0.11189"
+        ixz="-0.29983"
+        iyy="1.0023"
+        iyz="-0.097095"
+        izz="0.93296" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/rotary head.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.91765 0.43922 0.066667 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/rotary head.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rotary head"
+    type="continuous">
+    <origin
+      xyz="0.54263 -0.51246 -0.15374"
+      rpy="-1.5708 1.3273 -3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="rotary head" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="lower arm">
+    <inertial>
+      <origin
+        xyz="0.00015047 0.30837 0.16968"
+        rpy="0 0 0" />
+      <mass
+        value="13.477" />
+      <inertia
+        ixx="0.5502"
+        ixy="-0.00050801"
+        ixz="0.00016379"
+        iyy="0.056353"
+        iyz="-0.025425"
+        izz="0.54928" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/lower arm.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.91765 0.43922 0.066667 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/lower arm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lower arm"
+    type="revolute">
+    <origin
+      xyz="0.26 0 0.332"
+      rpy="1.5708 -0.61512 -2.4469E-15" />
+    <parent
+      link="rotary head" />
+    <child
+      link="lower arm" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.51935"
+      upper="2.7968"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="upper arm">
+    <inertial>
+      <origin
+        xyz="0.040381 -0.012272 -0.025773"
+        rpy="0 0 0" />
+      <mass
+        value="17.293" />
+      <inertia
+        ixx="0.13291"
+        ixy="0.0059275"
+        ixz="-0.0065838"
+        iyy="0.76622"
+        iyz="0.0011145"
+        izz="0.73586" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/upper arm.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.91765 0.43922 0.066667 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/upper arm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="upper arm"
+    type="revolute">
+    <origin
+      xyz="0 0.68 0"
+      rpy="1.0996E-15 1.0645E-15 -0.59767" />
+    <parent
+      link="lower arm" />
+    <child
+      link="upper arm" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-4.4374"
+      upper="0.51935"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="forearm twisting">
+    <inertial>
+      <origin
+        xyz="1.6613E-05 0.0063474 -0.14486"
+        rpy="0 0 0" />
+      <mass
+        value="2.4384" />
+      <inertia
+        ixx="0.014576"
+        ixy="-2.4746E-06"
+        ixz="-1.7816E-06"
+        iyy="0.014406"
+        iyz="0.0012539"
+        izz="0.0043726" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/forearm twisting.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.91765 0.43922 0.066667 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/forearm twisting.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="forearm twisting"
+    type="continuous">
+    <origin
+      xyz="0.44029 -0.0225 -0.018"
+      rpy="-1.5708 0.23144 1.5708" />
+    <parent
+      link="upper arm" />
+    <child
+      link="forearm twisting" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="wrist">
+    <inertial>
+      <origin
+        xyz="0.049456 -0.00019093 0.0042253"
+        rpy="0 0 0" />
+      <mass
+        value="1.6974" />
+      <inertia
+        ixx="0.0082548"
+        ixy="6.7936E-06"
+        ixz="-0.00031272"
+        iyy="0.011975"
+        iyz="-2.1551E-05"
+        izz="0.0062431" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/wrist.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.91765 0.43922 0.066667 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/wrist.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.22621"
+      rpy="-1.5708 1.4272 -3.1416" />
+    <parent
+      link="forearm twisting" />
+    <child
+      link="wrist" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-2.4125"
+      upper="2.1253"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="axis6">
+    <inertial>
+      <origin
+        xyz="-1.6653E-16 -2.2204E-16 -0.037417"
+        rpy="0 0 0" />
+      <mass
+        value="0.044179" />
+      <inertia
+        ixx="1.59E-05"
+        ixy="8.4703E-22"
+        ixz="8.3062E-20"
+        iyy="1.59E-05"
+        iyz="2.5623E-20"
+        izz="3.1063E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/axis6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka kr16 assembly URDF/meshes/axis6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="axis6"
+    type="continuous">
+    <origin
+      xyz="0.11558 0 0.003"
+      rpy="1.5708 1.5274 -1.5708" />
+    <parent
+      link="wrist" />
+    <child
+      link="axis6" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+</robot>
